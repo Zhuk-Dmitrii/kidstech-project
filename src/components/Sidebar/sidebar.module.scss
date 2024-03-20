@@ -1,0 +1,29 @@
+@import '../../assets/scss/variables';
+
+.sidebar {
+   width: 264px;
+
+   & .sidebarItems {
+      border: 1px solid $periwinkleCrayola;
+      border-radius: 18px;
+      padding: 12px;
+   }
+
+   & .sidebarItem {
+      width: 240px;
+      height: 42px;
+   }
+
+   & a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      transition: all 0.3s ease-in-out;
+   }
+
+   & a:hover {
+      background: $periwinkleCrayola;
+   }
+}

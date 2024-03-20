@@ -1,0 +1,43 @@
+@import './variables';
+
+@font-face {
+  font-family: 'Nunito';
+  src: url(../fonts/Nunito-ExtraBold.woff2) format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 100%;
+  color: $space;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
