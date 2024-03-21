@@ -4,9 +4,9 @@ import { ICourses } from '../types/interfaces'
 
 type TState = {
    data: ICourses[],
-   tag: string,
+   activeTag: string,
    loading: boolean,
-   error: null | string
+   error: null | string,
 }
 
 export const fetchCourses = createAsyncThunk('courses/fetchCourses', async () => {
@@ -19,13 +19,13 @@ export const coursesSlice = createSlice({
    name: 'courses',
    initialState: {
       data: [],
-      tag: 'все темы',
+      activeTag: 'Все темы',
       loading: false,
       error: null
    } as TState,
    reducers: {
-      setTag: (state, action) => {
-         state.tag = action.payload
+      setActiveTag: (state, action) => {
+         state.activeTag = action.payload;
       }
    },
    extraReducers: builder => {
@@ -45,4 +45,5 @@ export const coursesSlice = createSlice({
    }
 })
 
+export const { setActiveTag } = coursesSlice.actions
 export const coursesReducer = coursesSlice.reducer

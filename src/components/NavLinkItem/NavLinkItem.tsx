@@ -1,11 +1,21 @@
+import { setActiveTag } from '../../redux/coursesSlice'
+import { useAppDispatch } from '../../redux/store'
+import style from './navLinkItem.module.scss'
+
 type Props = {
-   className: CSSModuleClasses[string],
-   value: string
+   value: string,
+   active: boolean,
 }
 
-export function NavLinkItem({ className, value }: Props) {
+export function NavLinkItem({ value, active }: Props) {
+   const dispatch = useAppDispatch()
+
+   function handleClick() {
+      dispatch(setActiveTag(value))
+   }
+
    return (
-      <li className={className}>
+      <li className={`${style.navItem} ${active ? style.active : ''}`} onClick={handleClick}>
          <a href="#">{value}</a>
       </li>
    )

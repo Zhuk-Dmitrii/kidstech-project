@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import { useAppSelector } from '../../redux/store'
 import { NavLinkItem } from '../NavLinkItem'
-import style from './sidebar.module.scss'
+import style from './sideBar.module.scss'
 
 export function Sidebar() {
-   const { data } = useSelector((state: RootState) => state.courses)
+   const data = useAppSelector(state => state.courses.data)
+   const activeTag = useAppSelector(state => state.courses.activeTag)
 
    function renderNavLinkItem() {
       if (data) {
@@ -17,8 +17,8 @@ export function Sidebar() {
             return (
                <NavLinkItem
                   key={item}
-                  className={style.sidebarItem}
                   value={item}
+                  active={item === activeTag}
                />
             )
          })
@@ -29,8 +29,8 @@ export function Sidebar() {
       <div className={style.sidebar}>
          <ul className={style.sidebarItems}>
             <NavLinkItem
-               className={style.sidebarItem}
                value={'Все темы'}
+               active={'Все темы' === activeTag}
             />
             {renderNavLinkItem()}
          </ul>
