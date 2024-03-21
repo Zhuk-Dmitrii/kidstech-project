@@ -1,12 +1,12 @@
 type Props = {
    className: CSSModuleClasses[string],
-   children: React.ReactNode
+   value: string
 }
 
-export function NavLinkItem({ className, children }: Props) {
+export function NavLinkItem({ className, value }: Props) {
    return (
       <li className={className}>
-         <a href="#">{children}</a>
+         <a href="#">{value}</a>
       </li>
    )
 }

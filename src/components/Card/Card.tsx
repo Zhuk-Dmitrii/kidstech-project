@@ -1,13 +1,18 @@
+import { ICourses } from '../../types/interfaces'
 // styles
 import style from './card.module.scss'
 
-export function Card() {
+type TProps = {
+   data: ICourses
+}
+
+export function Card({ data }: TProps) {
    return (
       <div className={style.card}>
-         <div className={style.cardImage}>
-            <img src="https://s3.logiclike.com/s3/logic-training/side-courses/files/MkHAmnYuhotzMc91WydqA7dkFrVPO3KoclrIJX2O.png" alt="шахматы" />
+         <div className={style.cardImage} style={{ background: data.bgColor }}>
+            <img src={data.image} alt={data.name} />
          </div>
-         <h4 className={style.cardTitle}>Шахматы. Опытный</h4>
+         <h4 className={style.cardTitle}>{data.name}</h4>
       </div>
    )
 }

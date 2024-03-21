@@ -1,32 +1,38 @@
-// components
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 import { NavLinkItem } from '../NavLinkItem'
-// styles
 import style from './sidebar.module.scss'
 
 export function Sidebar() {
+   const { data } = useSelector((state: RootState) => state.courses)
+
+   function renderNavLinkItem() {
+      if (data) {
+         const tags: string[][] = data.map((item) => item.tags)
+         const flatTags: string[] = tags.flat()
+         const setTags: Set<string> = new Set(flatTags)
+         const result: string[] = Array.from(setTags)
+
+         return result.map(item => {
+            return (
+               <NavLinkItem
+                  key={item}
+                  className={style.sidebarItem}
+                  value={item}
+               />
+            )
+         })
+      }
+   }
+
    return (
       <div className={style.sidebar}>
          <ul className={style.sidebarItems}>
             <NavLinkItem
                className={style.sidebarItem}
-               children={'Все темы'}
+               value={'Все темы'}
             />
-            <NavLinkItem
-               className={style.sidebarItem}
-               children={'Логика и мышление'}
-            />
-            <NavLinkItem
-               className={style.sidebarItem}
-               children={'Загадки'}
-            />
-            <NavLinkItem
-               className={style.sidebarItem}
-               children={'Головоломки'}
-            />
-            <NavLinkItem
-               className={style.sidebarItem}
-               children={'Путешествия'}
-            />
+            {renderNavLinkItem()}
          </ul>
       </div>
    )
