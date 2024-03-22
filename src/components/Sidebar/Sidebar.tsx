@@ -4,7 +4,6 @@ import style from './sideBar.module.scss'
 
 export function Sidebar() {
    const data = useAppSelector(state => state.courses.data)
-   const activeTag = useAppSelector(state => state.courses.activeTag)
 
    function renderNavLinkItem() {
       if (data) {
@@ -18,7 +17,6 @@ export function Sidebar() {
                <NavLinkItem
                   key={item}
                   value={item}
-                  active={item === activeTag}
                />
             )
          })
@@ -30,7 +28,6 @@ export function Sidebar() {
          <ul className={style.sidebarItems}>
             <NavLinkItem
                value={'Все темы'}
-               active={'Все темы' === activeTag}
             />
             {renderNavLinkItem()}
          </ul>

@@ -1,14 +1,4 @@
 .main {
+   display: flex;
    flex: 1 1 auto;
-   height: 100%;
-}
-
-.containerCourses {
-   margin-left: 24px;
-   flex: 1 1 auto;
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   grid-column-gap: 18px;
-   grid-row-gap: 18px;
-   height: 100%;
 }

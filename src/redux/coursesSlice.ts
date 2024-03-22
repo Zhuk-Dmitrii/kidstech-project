@@ -4,7 +4,6 @@ import { ICourses } from '../types/interfaces'
 
 type TState = {
    data: ICourses[],
-   activeTag: string,
    loading: boolean,
    error: null | string,
 }
@@ -19,15 +18,10 @@ export const coursesSlice = createSlice({
    name: 'courses',
    initialState: {
       data: [],
-      activeTag: 'Все темы',
       loading: false,
       error: null
    } as TState,
-   reducers: {
-      setActiveTag: (state, action) => {
-         state.activeTag = action.payload;
-      }
-   },
+   reducers: {},
    extraReducers: builder => {
       builder.addCase(fetchCourses.pending, (state) => {
          state.loading = true
@@ -45,5 +39,4 @@ export const coursesSlice = createSlice({
    }
 })
 
-export const { setActiveTag } = coursesSlice.actions
 export const coursesReducer = coursesSlice.reducer

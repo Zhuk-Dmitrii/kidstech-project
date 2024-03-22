@@ -11,10 +11,11 @@
       width: 100%;
       padding: 12px;
       transition: all 0.3s ease;
-   }
-}
 
-.active{
-   color: $white;
-   background: $fern;
+      &.active {
+         color: $white;
+         background: $fern;
+         border-radius: inherit;
+      }
+   }
 }

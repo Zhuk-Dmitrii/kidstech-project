@@ -1,5 +1,4 @@
 import { ICourses } from '../../types/interfaces'
-// styles
 import style from './card.module.scss'
 
 type TProps = {
