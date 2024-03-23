@@ -1,51 +1,37 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../redux/store'
-import { fetchCourses } from '../../redux/coursesSlice'
+import { useSelector } from 'react-redux'
+
+import { selectData, selectLoading } from '../../redux/slices/coursesSlice'
+import { useAppDispatch } from '../../redux/hooks/hooks'
+import { fetchCourses } from '../../redux/thunks/thunks'
 import { Container } from '../../components/Container'
 import { Card } from '../../components/Card'
 import { Spinner } from '../../components/Spinner'
 import style from '../../components/Container/container.module.scss'
 
 export function Courses() {
-   const { coursesName } = useParams()
-   const { data } = useAppSelector((state) => state.courses)
-   const { loading } = useAppSelector((state) => state.courses)
-   const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
+  const { coursesName } = useParams<{ coursesName: string }>()
+  const courses = useSelector(selectData)
+  const loading = useSelector(selectLoading)
 
-   console.log(coursesName)
+  useEffect(() => {
+    dispatch(fetchCourses())
+  }, [dispatch])
 
-   useEffect(() => {
-      dispatch(fetchCourses())
-   }, [dispatch])
+  const renderCards = () => {
+    const filteredCourses =
+      coursesName === 'Все темы'
+        ? courses
+        : courses.filter((course) => course.tags.some((tag) => tag === coursesName))
 
-   function renderCards() {
-      if (coursesName == 'Все темы') {
-         return data.map((item) => {
-            return <Card key={item.id} data={item} />
-         })
-      }
+    return filteredCourses.map((course) => <Card key={course.id} course={course} />)
+  }
 
-      const filteredData = data.filter((item) => {
-         return item.tags.some(item => item == coursesName)
-      })
+  if (loading) {
+    return <Spinner />
+  }
 
-      return filteredData.map((item) => {
-         return <Card key={item.id} data={item} />
-      })
-   }
-
-   if (loading) {
-      return (
-         <Spinner />
-      )
-   }
-
-   return (
-      <>
-         <Container className={style.containerCourses}>
-            {renderCards()}
-         </Container>
-      </>
-   )
+  return <Container className={style.containerCourses}>{renderCards()}</Container>
 }

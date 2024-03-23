@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+
 import { Sidebar } from '../Sidebar'
 import { Main } from '../Main'
 import style from './layout.module.scss'
